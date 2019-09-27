@@ -5,6 +5,8 @@ import com.zzx.provider.server.UserServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -14,7 +16,16 @@ public class UserController {
 
     @GetMapping("/find")
     public UserPO findById(){
-        return userServer.findById(1);
+        return userServer.findById();
     }
 
+
+    @GetMapping("/list")
+    public List<String > getList() {
+        return new ArrayList<String>() {
+            {
+                add("add");
+            }
+        };
+    }
 }

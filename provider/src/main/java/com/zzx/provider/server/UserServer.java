@@ -11,10 +11,7 @@ public class UserServer {
 
     @Autowired
     UserDao userDao;
-    public UserPO findById(int id){
-        if(id==0){
-            return null;
-        }
-        return userDao.findById(id);
+    public UserPO findById(){
+        return userDao.findById(1);
     }
 }

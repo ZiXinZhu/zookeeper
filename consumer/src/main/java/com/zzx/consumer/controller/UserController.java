@@ -1,19 +1,25 @@
 package com.zzx.consumer.controller;
 
-import com.zzx.consumer.server.UserServer;
+import com.zzx.consumer.server.IUserServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 public class UserController {
 
 
     @Autowired
-    UserServer server;
+    protected IUserServer server;
 
     @GetMapping("/get")
     public String getUser() {
-        return server.getUser();
+        return server.findById();
+    }
+
+    @GetMapping("/add")
+    public List<String> getList() {
+        return server.getList();
     }
 }
