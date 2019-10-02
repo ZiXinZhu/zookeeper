@@ -1,7 +1,8 @@
 package com.zzx.provider.redisson;
 
 
-import org.redisson.Redisson;
+import com.zzx.provider.redis.TestRedisTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 @RestController
+@Slf4j
 public class SellController {
+
+
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private RedissonClient redisson;
+
+    @Autowired
+    private TestRedisTemplate doRedisTemplate;
 
     @GetMapping("/save")
     public void add(){
@@ -41,4 +48,7 @@ public class SellController {
             lock.unlock(); //释放锁
         }
     }
+
+
+
 }
