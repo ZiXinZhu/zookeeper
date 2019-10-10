@@ -107,6 +107,10 @@
             <version>2.9.0</version>
         </dependency>
         <!--end redis distributed lock-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
