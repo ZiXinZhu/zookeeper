@@ -1,4 +1,4 @@
-package com.zzx.consumer.session;
+package com.zzx.session;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,4 +13,5 @@ public class ShareSession {
     public String setSession(HttpServletRequest servletRequest){
         return String.valueOf(servletRequest.getSession().getAttribute("zzx"));
     }
+
 }
