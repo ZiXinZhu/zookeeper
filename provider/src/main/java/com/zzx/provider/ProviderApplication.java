@@ -10,11 +10,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @Configuration
 @ConfigurationProperties(prefix = "spring.redis")
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 30*60)
 @Data
 public class ProviderApplication {
 

@@ -1,6 +1,5 @@
 package com.zzx.consumer;
 
-import io.lettuce.core.dynamic.annotation.Value;
 import lombok.Data;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -12,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @EnableFeignClients
 @ConfigurationProperties(prefix = "spring.redis")
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 30*60)
 @Data
 public class ConsumerApplication {
 
