@@ -48,7 +48,4 @@ public class SellController {
             lock.unlock(); //释放锁
         }
     }
-
-
-
 }
