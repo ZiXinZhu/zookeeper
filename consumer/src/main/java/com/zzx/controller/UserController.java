@@ -15,11 +15,11 @@ public class UserController {
 
     @GetMapping("/get")
     public String getUser() {
-        return server.findById();
+        return server.find();
     }
 
     @GetMapping("/add")
     public List<String> getList() {
-        return server.getList();
+        return server.get();
     }
 }

@@ -24,7 +24,7 @@ public class UserController {
     public List<String > getList() {
         return new ArrayList<String>() {
             {
-                add("add");
+                add("lz");
             }
         };
     }

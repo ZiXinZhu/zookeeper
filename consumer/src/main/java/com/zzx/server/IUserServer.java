@@ -11,8 +11,8 @@ public interface IUserServer {
 
 
     @GetMapping("/find")
-    String findById() ;
+    String find() ;
 
     @GetMapping("/list")
-    List<String> getList();
+    List<String> get();
 }
