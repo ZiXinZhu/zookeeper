@@ -22,8 +22,6 @@ public class ZooKeeperLockController {
     @GetMapping("/zk/sell")
     public String zookeeper_lock() throws Exception {
 
-
-        for (int i = 0; i < 50; i++) {
             //创建zookeeper的客户端
             RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
             CuratorFramework client = CuratorFrameworkFactory.newClient(IP, retryPolicy);
@@ -36,12 +34,14 @@ public class ZooKeeperLockController {
             if (stock > 0) {
                 redisTemplate.opsForValue().set("zzx", (stock - 1) + "");
                 System.out.println("结果:" + (stock - 1));
+            }else {
+                System.out.println("商品已售完！");
             }
             //完成业务流程, 释放锁
             mutex.release();
             //关闭客户端
             client.close();
-        }
+
         return "success";
     }
 }
