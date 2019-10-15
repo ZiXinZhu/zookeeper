@@ -31,6 +31,7 @@ public class SellController {
     public void add(){
         redisTemplate.delete("zzx");
         redisTemplate.opsForValue().set("zzx","100");
+        System.out.println("添加成功");
     }
 
     private final String LOCKKEY = "locks";
