@@ -29,7 +29,7 @@ public class ConsistentHashLoadBalance {
      */
     private void initalization(){
         for (String nodeName: nodes) {
-            for (int i = 0; i < replicCnt/4; i++) {
+            for (int i = 0; i < replicCnt/nodes.size(); i++) {
                 String virtualNodeName = getNodeNameByIndex(nodeName, i);
                 for (int j = 0; j < 4; j++) {
                     virtualNodes.put(hash(virtualNodeName, j), nodeName);
@@ -131,7 +131,7 @@ public class ConsistentHashLoadBalance {
         nodes.add("192.168.2.2:8080");
         nodes.add("192.168.2.3:8080");
         nodes.add("192.168.2.4:8080");
-        ConsistentHashLoadBalance consistentHash = new ConsistentHashLoadBalance(nodes, 5);
+        ConsistentHashLoadBalance consistentHash = new ConsistentHashLoadBalance(nodes, 8);
         consistentHash.printTreeNode();
         System.out.println(consistentHash.selectNode("3540412423"));
     }
