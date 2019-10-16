@@ -1,6 +1,8 @@
 package com.zzx;
 
+import com.zzx.server.UserServer;
 import lombok.Data;
+import org.mybatis.spring.annotation.MapperScan;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -9,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
@@ -18,6 +22,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @ConfigurationProperties(prefix = "spring.redis")
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 30*60)
 @Data
+@Import({UserServer.class})
 public class ProviderApplication {
 
     private String host;

@@ -4,9 +4,8 @@ package com.zzx.server;
 import com.zzx.dao.UserDao;
 import com.zzx.po.UserPO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public class UserServer {
 
     @Autowired
