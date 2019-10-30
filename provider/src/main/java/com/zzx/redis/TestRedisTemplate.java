@@ -4,9 +4,15 @@ package com.zzx.redis;
 import com.zzx.dao.UserDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisSentinelPool;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -32,9 +38,9 @@ public class TestRedisTemplate {
             } else {
                 //一大坨逻辑代码
                 int age = userDao.findAge(1);
-                age=age - 1;
+                age = age - 1;
                 System.out.println("age:" + age);
-                userDao.update(1,age );
+                userDao.update(1, age);
                 //解锁
                 unLock(goodsId, String.valueOf(time));
             }
@@ -43,7 +49,7 @@ public class TestRedisTemplate {
 
     public boolean lock(String key, String value) {
 
-        String currentValue=String.valueOf(redisTemplate.opsForValue().get(key));
+        String currentValue = String.valueOf(redisTemplate.opsForValue().get(key));
         //setIfAbsent如果key存在false, 如果不存在返回true
         if (!redisTemplate.opsForValue().setIfAbsent(key, value)) {
             if (currentValue.equals("null") || ((Long.parseLong(currentValue) > System.currentTimeMillis()))) {
@@ -51,13 +57,13 @@ public class TestRedisTemplate {
             }
             System.out.println("time:" + currentValue);
             //setIfAbsent如果key存在false, 如果不存在返回true
-             System.out.println("add lock true");
-             redisTemplate.opsForValue().set(key, value);
-             return true;
+            System.out.println("add lock true");
+            redisTemplate.opsForValue().set(key, value);
+            return true;
         } else {
-                System.out.println("add lock true");
-                redisTemplate.opsForValue().set(key, value);
-                return true;
+            System.out.println("add lock true");
+            redisTemplate.opsForValue().set(key, value);
+            return true;
         }
     }
 
@@ -72,4 +78,5 @@ public class TestRedisTemplate {
             log.error("解锁异常, {}", e.getMessage());
         }
     }
+
 }

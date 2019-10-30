@@ -24,13 +24,10 @@ public class SellController {
     @Autowired
     private RedissonClient redisson;
 
-    @Autowired
-    private TestRedisTemplate doRedisTemplate;
-
     @GetMapping("/save")
     public void add(){
         redisTemplate.delete("zzx");
-        redisTemplate.opsForValue().set("zzx","100");
+        redisTemplate.opsForValue().set("zzx",321);
         System.out.println("添加成功");
     }
 
